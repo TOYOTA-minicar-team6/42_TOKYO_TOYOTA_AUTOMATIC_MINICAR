@@ -10,6 +10,7 @@ import time
 import numpy as np
 
 # GPIOピン番号の指示方法
+#GPIO.setmode(GPIO.BOARD)
 GPIO.setmode(GPIO.BOARD)
 
 #PWM制御の初期設定
@@ -46,26 +47,25 @@ print('Press any key to continue')
 input()
 
 #ここから走行用プログラム
-try:
-    while True:
-        x = input()
+while True:
+	x = input()
         
-        if x == 'd':
+	if x == 'd':
            togikai_drive.Accel(PWM_PARAM,pwm,time,FORWARD_C)
            togikai_drive.Steer(PWM_PARAM,pwm,time,RIGHT) #original = "+"
            comment = "右旋回"
-        elif x == 'a':
+	elif x == 'a':
            togikai_drive.Accel(PWM_PARAM,pwm,time,FORWARD_C)
            togikai_drive.Steer(PWM_PARAM,pwm,time,LEFT) #original = "-"
            comment = "左旋回"
-        elif x == 'w':
+	elif x == 'w':
             togikai_drive.Accel(PWM_PARAM,pwm,time,FORWARD_S)
             togikai_drive.Steer(PWM_PARAM,pwm,time,0)
             comment = "直進中"
-        else:
-            comment = "停止"
+	else:
+			comment = "停止"
 			togikai_drive.Accel(PWM_PARAM,pwm,time,0)
-    		togikai_drive.Steer(PWM_PARAM,pwm,time,0)
-    		GPIO.cleanup()
-            break
-        time.sleep(0.05)
+			togikai_drive.Steer(PWM_PARAM,pwm,time,0)
+			GPIO.cleanup()
+			break
+	time.sleep(0.05)

@@ -19,67 +19,71 @@ pwm = Adafruit_PCA9685.PCA9685(address=0x40)
 pwm.set_pwm_freq(60)
 
 def front_get_distance(): 
-	print("hiweiuwcduwcdhuicdibhu")
 	GPIO.output(front_trig_pin, GPIO.HIGH)
 	time.sleep(0.000010)
 	GPIO.output(front_trig_pin, GPIO.LOW)
 
-	# while not GPIO.input(front_echo_pin):
-	# 	print("GPIO input 1")
-	# 	pass
+	while not GPIO.input(front_echo_pin):
+	 	pass
 	t1 = time.time()
 
 	while GPIO.input(front_echo_pin):
-		print("GPIO input 2")
 		pass
 	t2 = time.time()
 
 	return (t2 - t1) * speed_of_sound / 2
 
-# def right_get_distance(): 
-# 	GPIO.output(right_trig_pin, GPIO.HIGH)
-# 	time.sleep(0.000010)
-# 	GPIO.output(right_trig_pin, GPIO.LOW)
+def right_get_distance(): 
+	GPIO.output(right_trig_pin, GPIO.HIGH)
+	time.sleep(0.000010)
+	GPIO.output(right_trig_pin, GPIO.LOW)
 
-# 	while not GPIO.input(right_echo_pin):
-# 		print(GPIO.output)
-# 		pass
-# 	t1 = time.time()
+	while not GPIO.input(right_echo_pin):
+		pass
 
-# 	while GPIO.input(right_echo_pin):
-# 		print(GPIO.output)
-# 		pass
-# 	t2 = time.time()
+	t1 = time.time()
 
-# 	return (t2 - t1) * speed_of_sound / 2
+	while GPIO.input(right_echo_pin):
+		pass
+	t2 = time.time()
+
+	return (t2 - t1) * speed_of_sound / 2
 
 print('press to start')
 input()
 
-pwm.set_pwm(1, 0, 378)
-pwm.set_pwm(3, 0, 0)
+pwm.set_pwm(1, 0, 376)
+pwm.set_pwm(3, 0, 350)
 
 while True:
-	print("------------------")
 	try:
-		print("giuwriucwiuwcd")
 		front_distance = float('{:.1f}'.format(front_get_distance()))
 		print("front_Distance: " + str(front_distance) + "cm")
-		# right_distance = float('{:.1f}'.format(right_get_distance()))
-		# print("right_Distance: " + str(right_distance) + "cm")
-		# pwm.set_pwm(3, 0, 400)
-		if front_distance <= 30.0:
+		right_distance = float('{:.1f}'.format(right_get_distance()))
+		print("right_Distance: " + str(right_distance) + "cm")
+		if front_distance <= 100.0:
+			pwm.set_pwm(3, 0, 350)
 			pwm.set_pwm(1, 0, 380)
+			print('break')
+			break
+		if right_distance <= 30.0:
+			pwm.set_pwm(3, 0, 300)
 			print('left')
-		time.sleep(1)
-		# pwm.set_pwm(3, 0, 300)
-		# time.sleep(1)
+		elif right_distance >= 150.0:
+			pwm.set_pwm(3, 0, 430)
+			print('right')
+		else:
+			pwm.set_pwm(3, 0, 350)
+			print('straight')
+		time.sleep(0.3)
 		
 
 	except KeyboardInterrupt:
+		pwm.set_pwm(1, 0, 380)
 		GPIO.cleanup()
 		sys.exit()
-	# finally:
-	# 	pwm.set_pwm(1, 0, 0)  # Set the servo back to the neutral position
+	finally:
+		pwm.set_pwm(3, 0, 0)  # Set the servo back to the neutral position
+
 
 

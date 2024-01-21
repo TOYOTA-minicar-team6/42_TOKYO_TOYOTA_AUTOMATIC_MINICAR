@@ -41,16 +41,19 @@ while True:
 		print("Distance: " + str(distance) + "cm")
 
 		pwm.set_pwm(3, 0, 400)
+		print('right')
 		if distance <= 30.0:
 			pwm.set_pwm(1, 0, 380)
 			print('break')
 			break
 		time.sleep(1)
 		pwm.set_pwm(3, 0, 300)
+		print('left')
 		time.sleep(1)
 		
 
 	except KeyboardInterrupt:
+		pwm.set_pwm(1, 0, 380)
 		GPIO.cleanup()
 		sys.exit()
 	# finally:

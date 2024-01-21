@@ -46,6 +46,7 @@ while True:
 		
 
 	except KeyboardInterrupt:
+		pwm.set_pwm(1, 0, 380)
 		GPIO.cleanup()
 		sys.exit()
 	# finally:

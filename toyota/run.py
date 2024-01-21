@@ -70,11 +70,7 @@ while True:
 		# pwm.set_pwm(3, 0, 400)
 		if front_distance <= 30.0:
 			pwm.set_pwm(1, 0, 380)
-			print('break')
-			break
-		# if right_distance <= 30.0:
-		# 	pwm.set_pwm(3, 0, 300)
-		# 	print('left')
+			print('left')
 		time.sleep(1)
 		# pwm.set_pwm(3, 0, 300)
 		# time.sleep(1)

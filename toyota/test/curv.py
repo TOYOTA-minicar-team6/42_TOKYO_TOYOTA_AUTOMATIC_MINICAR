@@ -15,18 +15,15 @@ pwm = Adafruit_PCA9685.PCA9685(address=0x40)
 pwm.set_pwm_freq(60)
 
 def get_distance(): 
-	print("hiweiuwcduwcdhuicdibhu")
 	GPIO.output(trig_pin, GPIO.HIGH)
 	time.sleep(0.000010)
 	GPIO.output(trig_pin, GPIO.LOW)
 
 	while not GPIO.input(echo_pin):
-		print("hiw")
 		pass
 	t1 = time.time()
 
 	while GPIO.input(echo_pin):
-		print("jrmkrw")
 		pass
 	t2 = time.time()
 
@@ -44,10 +41,10 @@ while True:
 		print("Distance: " + str(distance) + "cm")
 
 		pwm.set_pwm(3, 0, 400)
-		# if distance <= 30.0:
-			# pwm.set_pwm(1, 0, 380)
-			# print('break')
-			# break
+		if distance <= 30.0:
+			pwm.set_pwm(1, 0, 380)
+			print('break')
+			break
 		time.sleep(1)
 		pwm.set_pwm(3, 0, 300)
 		time.sleep(1)

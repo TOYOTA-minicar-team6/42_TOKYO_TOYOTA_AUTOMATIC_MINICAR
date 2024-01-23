@@ -1,2 +1,5 @@
-def adjust_servo_morter(pwm, servo, direction):
-    pwm.set_pwm(servo, 0, direction)
+import senser
+from define import SERVO
+
+def adjust_servo_morter(direction):
+    senser.pwm.set_pwm(SERVO, 0, direction)

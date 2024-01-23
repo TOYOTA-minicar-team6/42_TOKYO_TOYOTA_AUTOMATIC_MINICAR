@@ -14,15 +14,15 @@ def stop(front, right, left):
 	return False
 
 def turn_right(front, right, left):
-	if right <= TURN and TURN <= left:
+	if left <= TURN and TURN <= right:
 		return True
-	if right <= TURN and left <= TURN and 10 + right <= left:
+	if left <= TURN and right <= TURN and 10 + left <= right:
 		return True
 	return False
 
 def turn_left(front, right, left):
-	if left <= TURN and TURN <= right:
+	if right <= TURN and TURN <= left:
 		return True
-	if right <= TURN and left <= TURN and 10 + left <= right:
+	if left <= TURN and right <= TURN and 10 + right <= left:
 		return True
 	return False

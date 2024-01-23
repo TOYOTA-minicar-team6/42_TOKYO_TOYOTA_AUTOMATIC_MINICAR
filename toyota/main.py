@@ -31,7 +31,7 @@ while True:
 			speed.set_speed(RUN)
 			servo.adjust_servo_morter(RIGHT)
 			print('right')
-		if check.turn_left(front_distance, right_distance, left_distance) == True:
+		elif check.turn_left(front_distance, right_distance, left_distance) == True:
 			speed.set_speed(RUN)
 			servo.adjust_servo_morter(LEFT)
 			print('left')

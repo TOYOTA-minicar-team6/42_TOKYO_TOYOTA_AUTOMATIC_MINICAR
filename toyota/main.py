@@ -25,20 +25,20 @@ while True:
 		if check.stop(front_distance) == True:
 			speed.set_speed(STOP)
 			servo.adjust_servo_morter(STRAIGHT)
-			print('stop')
+			print('\033[91m'+'stop'+'\033[0m')
 			break
 		elif check.turn_right(front_distance, right_distance, left_distance) == True:
 			speed.set_speed(SPEED)
 			servo.adjust_servo_morter(RIGHT)
-			print('right')
+			print('\033[93m'+'right'+'\033[0m')
 		elif check.turn_left(front_distance, right_distance, left_distance) == True:
 			speed.set_speed(SPEED)
 			servo.adjust_servo_morter(LEFT)
-			print('left')
+			print('\033[96m'+'left'+'\033[0m')
 		else:
 			speed.set_speed(SPEED)
 			servo.adjust_servo_morter(STRAIGHT)
-			print('straight')
+			print('\033[92m'+'straight'+'\033[0m')
 		time.sleep(0.3)
 		
 

@@ -53,7 +53,7 @@ REVERSE = -60 #<=100
 LEFT = 90 #<=100
 RIGHT = -90 #<=100
 #データ記録用配列作成
-d = np.zeros(6)
+d = np.zeros(4)
 #操舵、駆動モーターの初期化
 togikai_drive.Accel(PWM_PARAM,pwm,time,0)
 togikai_drive.Steer(PWM_PARAM,pwm,time,0)
@@ -118,7 +118,7 @@ try:
         #距離データを配列に記録
         d = np.vstack([d,[time.time()-start_time, front_dis, left_dis, right_dis]])
         #距離を表示
-        print('Fr:{0:.1f} , FrRH:{1:.1f} , FrLH:{2:.1f}, RrRH:{3:.1f} , RrLH:{4:.1f}'.format(front_dis,left_dis,right_dis))
+        print('Front:{0:.1f} , Left:{1:.1f} , Right:{2:.1f}}'.format(front_dis,left_dis,right_dis))
         time.sleep(0.05)
 
 except KeyboardInterrupt:

@@ -7,8 +7,8 @@ front_trig_pin = 15
 front_echo_pin = 14
 right_trig_pin = 23
 right_echo_pin = 24
-left_trig_pin = 17
-left_echo_pin = 27
+left_trig_pin = 27
+left_echo_pin = 17
 speed_of_sound = 34370
 
 GPIO.setmode(GPIO.BCM)
@@ -17,6 +17,8 @@ GPIO.setup(front_trig_pin, GPIO.OUT)
 GPIO.setup(front_echo_pin, GPIO.IN)
 GPIO.setup(right_trig_pin, GPIO.OUT)
 GPIO.setup(right_echo_pin, GPIO.IN)
+GPIO.setup(left_trig_pin, GPIO.OUT)
+GPIO.setup(left_echo_pin, GPIO.IN)
 pwm = Adafruit_PCA9685.PCA9685(address=0x40)
 pwm.set_pwm_freq(60)
 

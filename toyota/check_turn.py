@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import sys
 import Adafruit_PCA9685
-from define import TURN, SHORT
+from define import TURN, SHORT, DOWN
 
 def stop(front, right, left):
 	if front <= SHORT:
@@ -10,6 +10,15 @@ def stop(front, right, left):
 	elif right <= SHORT:
 		return True
 	elif left <= SHORT:
+		return True
+	return False
+
+def down(front, right, left):
+	if front <= DOWN:
+		return True
+	elif right <= DOWN:
+		return True
+	elif left <= DOWN:
 		return True
 	return False
 

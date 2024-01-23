@@ -39,7 +39,10 @@ while True:
 			speed.set_speed(SPEED)
 			servo.adjust_servo_morter(STRAIGHT)
 			print('\033[92m'+'straight'+'\033[0m')
-		time.sleep(0.3)
+		if check.turn_right(front_distance, right_distance, left_distance) == True:
+			speed.set_speed(SLOW)
+			print('\033[95m'+'down'+'\033[0m')
+		time.sleep(0.1)
 		
 
 	except KeyboardInterrupt:

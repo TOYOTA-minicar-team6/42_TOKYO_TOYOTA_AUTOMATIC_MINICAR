@@ -9,21 +9,23 @@ import Adafruit_PCA9685
 import time
 import numpy as np
 
-# GPIOピン番号の指示方法
-GPIO.setmode(GPIO.BOARD)
+front_trig_pin = 15
+front_echo_pin = 14
+right_trig_pin = 23
+right_echo_pin = 24
+left_trig_pin = 27
+left_echo_pin = 17
+speed_of_sound = 34370
 
-#超音波センサ初期設定
-# Triger -- Fr:15, FrLH:13, RrLH:35, FrRH:32, RrRH:36
-t_list=[15,23,27]
-GPIO.setup(t_list,GPIO.OUT,initial=GPIO.LOW)
-# Echo -- Fr:26, FrLH:24, RrLH:37, FrRH:31, RrRH:38
-e_list=[14,24,17]
-GPIO.setup(e_list,GPIO.IN)
-
-#PWM制御の初期設定
-##モータドライバ:PCA9685のPWMのアドレスを設定
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(front_trig_pin, GPIO.OUT)
+GPIO.setup(front_echo_pin, GPIO.IN)
+GPIO.setup(right_trig_pin, GPIO.OUT)
+GPIO.setup(right_echo_pin, GPIO.IN)
+GPIO.setup(left_trig_pin, GPIO.OUT)
+GPIO.setup(left_echo_pin, GPIO.IN)
 pwm = Adafruit_PCA9685.PCA9685(address=0x40)
-##動作周波数を設定
 pwm.set_pwm_freq(60)
 
 #アライメント調整済みPWMパラメータ読み込み

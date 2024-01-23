@@ -22,7 +22,7 @@ while True:
 		print("right_Distance: " + str(right_distance) + "cm")
 		left_distance = float('{:.1f}'.format(senser.left_get_distance()))
 		print("left_Distance: " + str(left_distance) + "cm")
-		if check.stop(front_distance) == True:
+		if check.stop(front_distance, right_distance, left_distance) == True:
 			speed.set_speed(STOP)
 			servo.adjust_servo_morter(STRAIGHT)
 			print('\033[91m'+'stop'+'\033[0m')

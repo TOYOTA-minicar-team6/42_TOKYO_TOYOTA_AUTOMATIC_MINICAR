@@ -1,2 +1,5 @@
-def set_speed(pwm, esc, speed):
-	pwm.set_pwm(esc, 0, speed)
+import senser
+from define import ESC
+
+def set_speed(speed):
+	senser.pwm.set_pwm(ESC, 0, speed)

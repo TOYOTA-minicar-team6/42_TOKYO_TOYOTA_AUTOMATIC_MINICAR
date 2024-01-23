@@ -9,11 +9,11 @@ def stop(front):
 	return False
 
 def turn_right(front, right, left):
-	if 240.0 <= right:
+	if left <= 50.0:
 		return True
 	return False
 
 def turn_left(front, right, left):
-	if 240.0 <= left:
+	if right <= 50.0:
 		return True
 	return False

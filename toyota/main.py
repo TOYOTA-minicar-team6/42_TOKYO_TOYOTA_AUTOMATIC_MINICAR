@@ -6,12 +6,12 @@ import senser
 import check_turn as check
 import set_speed as speed
 import servo_driver as servo
-from define import STOP, SLOW, RUN, STRAIGHT, RIGHT, LEFT
+from define import STOP, SLOW, SPEED, STRAIGHT, RIGHT, LEFT
 
 print('press to start')
 input()
 
-speed.set_speed(RUN)
+speed.set_speed(SPEED)
 servo.adjust_servo_morter(STRAIGHT)
 
 while True:
@@ -28,15 +28,15 @@ while True:
 			print('stop')
 			break
 		elif check.turn_right(front_distance, right_distance, left_distance) == True:
-			speed.set_speed(RUN)
+			speed.set_speed(SPEED)
 			servo.adjust_servo_morter(RIGHT)
 			print('right')
 		elif check.turn_left(front_distance, right_distance, left_distance) == True:
-			speed.set_speed(RUN)
+			speed.set_speed(SPEED)
 			servo.adjust_servo_morter(LEFT)
 			print('left')
 		else:
-			speed.set_speed(RUN)
+			speed.set_speed(SPEED)
 			servo.adjust_servo_morter(STRAIGHT)
 			print('straight')
 		time.sleep(0.3)

@@ -7,6 +7,8 @@ front_trig_pin = 15
 front_echo_pin = 14
 right_trig_pin = 23
 right_echo_pin = 24
+left_trig_pin = 17
+left_echo_pin = 27
 speed_of_sound = 34370
 
 GPIO.setmode(GPIO.BCM)
@@ -49,6 +51,22 @@ def right_get_distance():
 
 	return (t2 - t1) * speed_of_sound / 2
 
+def left_get_distance(): 
+	GPIO.output(left_trig_pin, GPIO.HIGH)
+	time.sleep(0.000010)
+	GPIO.output(left_trig_pin, GPIO.LOW)
+
+	while not GPIO.input(left_echo_pin):
+		pass
+
+	t1 = time.time()
+
+	while GPIO.input(left_echo_pin):
+		pass
+	t2 = time.time()
+
+	return (t2 - t1) * speed_of_sound / 2
+
 print('press to start')
 input()
 
@@ -61,6 +79,8 @@ while True:
 		print("front_Distance: " + str(front_distance) + "cm")
 		right_distance = float('{:.1f}'.format(right_get_distance()))
 		print("right_Distance: " + str(right_distance) + "cm")
+		left_distance = float('{:.1f}'.format(left_get_distance()))
+		print("left_Distance: " + str(left_distance) + "cm")
 		if front_distance <= 100.0:
 			pwm.set_pwm(3, 0, 350)
 			pwm.set_pwm(1, 0, 380)

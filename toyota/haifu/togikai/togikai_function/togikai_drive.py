@@ -1,5 +1,5 @@
 def ReadPWMPARAM(pwm):
-    path = '/home/pi/TOYOTA/toyota/haifu/togikai/alignment_parameter.txt'
+    path = '/home/pi/togikai/alignment_parameter.txt'
     with open(path) as f:
         l = f.readlines()
         PWM_PARAM = ([int(l[2]),int(l[4]),int(l[6])],[int(l[9]),int(l[11]),int(l[13])])
